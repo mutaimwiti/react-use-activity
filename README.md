@@ -22,12 +22,20 @@ $ yarn add react-use-activity
 ```javascript
 import useActivity from 'react-use-activity';
 
-useActivity();
+useActivity({
+  timeout: 2000,
+  onActivity: () => {},
+  onInactivity: () => {},
+  activityEvents: 'mousemove',
+});
 ```
 
 Arguments:
-
-
+- `options`
+  - `timeout` - the duration of inactivity that should trigger `onInactivity` - defaults to `2000`(ms)
+  - `onActivity` - a callback that is executed any time user activity is registered
+  - `onInactivity` - a callback that is executed when user is inactive for the specified timeout
+  - `activityEvents` - a space delimited string specifying dom events that should be considered user activity - defaults to `mousemove`
    
 ### Licence
 

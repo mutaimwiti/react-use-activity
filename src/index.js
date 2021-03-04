@@ -1,19 +1,19 @@
 import { useEffect } from 'react';
 
 const useActivity = ({
-  onActivity,
-  onInactivity,
+  onActivity = () => {},
+  onInactivity = () => {},
+  timeout = 2000,
   activityEvents = 'mousemove',
-  inactivityTimeout = 2000,
 }) => {
   useEffect(() => {
-    let timeout = null;
+    let timer = null;
 
     const startTimeout = () => {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
         onInactivity();
-      }, inactivityTimeout);
+      }, timeout);
     };
 
     const handleMouseMove = () => {
@@ -25,7 +25,7 @@ const useActivity = ({
     document.addEventListener(activityEvents, handleMouseMove);
 
     return () => {
-      clearTimeout(timeout);
+      clearTimeout(timer);
       document.removeEventListener(activityEvents, handleMouseMove);
     };
   }, []);
