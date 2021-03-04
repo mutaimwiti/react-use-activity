@@ -5,21 +5,21 @@ const useActivity = ({
   onInactivity,
   inactivityTimeout = 2000,
 }) => {
-  let timeout;
-
-  const startTimeout = () => {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      onInactivity();
-    }, inactivityTimeout);
-  };
-
-  const handleMouseMove = () => {
-    onActivity();
-    startTimeout();
-  };
-
   useEffect(() => {
+    let timeout = null;
+
+    const startTimeout = () => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        onInactivity();
+      }, inactivityTimeout);
+    };
+
+    const handleMouseMove = () => {
+      onActivity();
+      startTimeout();
+    };
+
     startTimeout();
     document.addEventListener('mousemove', handleMouseMove);
     return () => {
