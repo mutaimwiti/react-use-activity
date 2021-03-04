@@ -1,17 +1,59 @@
-import { renderHook } from '@testing-library/react-hooks/dom';
+import { fireEvent } from '@testing-library/react';
+import { renderHook, act } from '@testing-library/react-hooks/dom';
 
 import useActivity from '../src';
 
-describe('useActivity', function () {
-  it('should not blow up', async () => {
-    const onActivity = jest.fn();
-    const onInactivity = jest.fn();
+jest.useFakeTimers();
 
-    renderHook(() =>
-      useActivity({
-        onActivity,
-        onInactivity,
-      }),
-    );
+describe('useActivity', function () {
+  beforeEach(() => {
+    this.onActivity = jest.fn();
+    this.onInactivity = jest.fn();
+  });
+
+  describe('when inactive for over 2 seconds', () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it('should trigger callback onInactivity', () => {
+      renderHook(() =>
+        useActivity({
+          onActivity: this.onActivity,
+          onInactivity: this.onInactivity,
+        }),
+      );
+
+      expect(this.onInactivity).not.toHaveBeenCalled();
+
+      act(() => {
+        jest.runAllTimers();
+      });
+
+      expect(this.onInactivity).toHaveBeenCalledTimes(1);
+    });
+
+    describe('and activity is registered', () => {
+      it('should trigger callback onActivity', () => {
+        renderHook(() =>
+          useActivity({
+            onActivity: this.onActivity,
+            onInactivity: this.onInactivity,
+          }),
+        );
+
+        act(() => {
+          jest.runAllTimers();
+        });
+
+        expect(this.onInactivity).toHaveBeenCalledTimes(1);
+
+        act(() => {
+          fireEvent.mouseMove(document.body);
+        });
+
+        expect(this.onActivity).toHaveBeenCalledTimes(1);
+      });
+    });
   });
 });

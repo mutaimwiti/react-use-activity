@@ -22,6 +22,7 @@ const useActivity = ({
 
     startTimeout();
     document.addEventListener('mousemove', handleMouseMove);
+
     return () => {
       clearTimeout(timeout);
       document.removeEventListener('mousemove', handleMouseMove);
