@@ -6,6 +6,7 @@ import { useActivity } from '../src';
 
 jest.useFakeTimers();
 
+/* eslint no-undef: 0 */
 describe('useActivity', function () {
   beforeEach(() => {
     this.onActivity = jest.fn();

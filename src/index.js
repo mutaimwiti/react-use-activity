@@ -1,5 +1,7 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { useEffect } from 'react';
 
+/* eslint no-undef: 0 */
 const useActivity = ({
   onActivity = () => {},
   onInactivity = () => {},
