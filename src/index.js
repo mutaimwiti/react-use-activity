@@ -30,4 +30,4 @@ const useActivity = ({
   }, []);
 };
 
-module.exports = useActivity;
+export { useActivity };

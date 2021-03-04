@@ -1,7 +1,8 @@
 import { fireEvent } from '@testing-library/react';
 import { renderHook, act } from '@testing-library/react-hooks/dom';
 
-import useActivity from '../src';
+// eslint-disable-next-line import/named
+import { useActivity } from '../src';
 
 jest.useFakeTimers();
 
