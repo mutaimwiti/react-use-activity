@@ -56,5 +56,28 @@ describe('useActivity', function () {
         expect(this.onActivity).toHaveBeenCalledTimes(1);
       });
     });
+
+    describe('when onActivity is not specified', () => {
+      it('should not crash', () => {
+        renderHook(() => useActivity({}));
+        // this triggers onActivity
+        // even though the callback is not specified it should not blow up
+        act(() => {
+          fireEvent.mouseMove(document.body);
+        });
+      });
+    });
+
+    describe('when onInactivity is not specified', () => {
+      it('should not crash', () => {
+        renderHook(() => useActivity({}));
+
+        // this triggers onInactivity
+        // even though the callback is not specified it should not blow up
+        act(() => {
+          jest.runAllTimers();
+        });
+      });
+    });
   });
 });
