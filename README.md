@@ -37,7 +37,7 @@ Arguments:
   - `onInactivity` - a callback that is executed when user is inactive for the specified timeout
   - `activityEvents` - a space delimited string specifying dom events that should be treated as user activity - defaults to `mousemove`
   
-### Running example
+### Run example
 Use one of the following based on your dependency manager.
 
 ```bash
