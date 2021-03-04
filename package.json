@@ -1,6 +1,6 @@
 {
   "name": "react-use-activity",
-  "version": "0.1.0-rc0",
+  "version": "0.1.0",
   "description": "React hook that let's you react to user activity or inactivity",
   "main": "index.js",
   "files": [
