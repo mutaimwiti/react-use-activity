@@ -79,5 +79,35 @@ describe('useActivity', function () {
         });
       });
     });
+
+    describe('when multiple activityEvents are specified', () => {
+      it('should trigger callback onActivity for any of the events', () => {
+        renderHook(() =>
+          useActivity({
+            onActivity: this.onActivity,
+            onInactivity: this.onInactivity,
+            activityEvents: 'keypress mousedown',
+          }),
+        );
+
+        act(() => {
+          jest.runAllTimers();
+        });
+
+        expect(this.onInactivity).toHaveBeenCalledTimes(1);
+
+        act(() => {
+          fireEvent.mouseDown(document.body);
+        });
+
+        expect(this.onActivity).toHaveBeenCalledTimes(1);
+
+        act(() => {
+          fireEvent.keyPress(document.body);
+        });
+
+        expect(this.onActivity).toHaveBeenCalledTimes(2);
+      });
+    });
   });
 });

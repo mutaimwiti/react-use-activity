@@ -22,11 +22,17 @@ const useActivity = ({
     };
 
     startTimeout();
-    document.addEventListener(activityEvents, handleMouseMove);
+    activityEvents
+      .split(' ')
+      .forEach((event) => document.addEventListener(event, handleMouseMove));
 
     return () => {
       clearTimeout(timer);
-      document.removeEventListener(activityEvents, handleMouseMove);
+      activityEvents
+        .split(' ')
+        .forEach((event) =>
+          document.removeEventListener(event, handleMouseMove),
+        );
     };
   }, []);
 };
