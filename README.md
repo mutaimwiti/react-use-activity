@@ -32,10 +32,10 @@ useActivity({
 
 Arguments:
 - `options`
-  - `timeout` - the duration of inactivity that should trigger `onInactivity` - defaults to `2000`(ms)
+  - `timeout` - the duration (ms) of inactivity that should trigger `onInactivity` - defaults to `2000`
   - `onActivity` - a callback that is executed any time user activity is registered
   - `onInactivity` - a callback that is executed when user is inactive for the specified timeout
-  - `activityEvents` - a space delimited string specifying dom events that should be considered user activity - defaults to `mousemove`
+  - `activityEvents` - a space delimited string specifying dom events that should be treated as user activity - defaults to `mousemove`
    
 ### Licence
 
