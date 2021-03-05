@@ -37,14 +37,8 @@ Arguments:
   - `onInactivity` - a callback that is executed when user is inactive for the specified timeout
   - `activityEvents` - a space delimited string specifying dom events that should be treated as user activity - defaults to `mousemove`
   
-### Run example
-Use one of the following based on your dependency manager.
-
-```bash
-$ npm run start:example
-
-$ yarn start:example
-```
+### CodeSandbox example
+https://codesandbox.io/s/lingering-glade-p1yun?file=/src/App.js
    
 ### Licence
 
