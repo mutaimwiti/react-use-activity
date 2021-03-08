@@ -1,13 +1,25 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import { useActivity } from 'react-use-activity';
+
 import './App.css';
+import logo from './logo.svg';
 
 function App() {
+  const [visible, setVisible] = useState(true);
+
+  useActivity({
+    timeout: 1000,
+    activityEvents: 'mousemove',
+    onActivity: () => setVisible(true),
+    onInactivity: () => setVisible(false),
+  });
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        {visible &&<img src={logo} className="App-logo" alt="logo" />}
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          I will disappear after a second of mouse inactivity and only re-appear when there's activity
         </p>
         <a
           className="App-link"
