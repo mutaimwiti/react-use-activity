@@ -8,10 +8,10 @@ function App() {
   const [visible, setVisible] = useState(true);
 
   useActivity({
-    timeout: 1000,
+    timeout: 2000,
     activityEvents: 'mousemove',
-    onActivity: () => setVisible(true),
-    onInactivity: () => setVisible(false),
+    onActivity: setVisible.bind(this,true),
+    onInactivity: setVisible.bind(this,false),
   });
 
   return (
@@ -19,7 +19,7 @@ function App() {
       <header className="App-header">
         {visible &&<img src={logo} className="App-logo" alt="logo" />}
         <p>
-          I will disappear after a second of mouse inactivity and only re-appear when there's activity
+          I will disappear after two seconds of mouse inactivity and only re-appear when there's activity
         </p>
         <a
           className="App-link"
