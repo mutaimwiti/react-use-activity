@@ -36,6 +36,7 @@ Arguments:
   - `onActivity` - a callback that is executed any time user activity is registered
   - `onInactivity` - a callback that is executed when user is inactive for the specified timeout
   - `activityEvents` - a space delimited string specifying dom events that should be treated as user activity - defaults to `mousemove`
+  -  `invokeOnActivityOnce` - a boolean indicating whether `onActivity` should be called once until an inactive state is reached - defaults to `true`
   
 ### CodeSandbox example
 https://codesandbox.io/s/lingering-glade-p1yun?file=/src/App.js
